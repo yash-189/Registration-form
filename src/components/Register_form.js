@@ -60,7 +60,7 @@ const Register_form = () => {
 
             console.log(useremail, email);
 
-            axios.post('https://api-317e-yash-189.vercel.app/api/payment/', { 'email': email })
+            axios.post('https://api-317e.vercel.app/api/payment/', { 'email': email })
                 .then((res) => {
                     console.log(res.data)
                     if (res?.data?.status == 'success') {
