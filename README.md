@@ -30,7 +30,7 @@ I used `html`, `css`, ...
 I used taiwind css for styling ...
 
 ## Status
-[name of project] is still in progress. `
+yoga app is still in progress. `
 
 
 
