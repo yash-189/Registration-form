@@ -3,8 +3,10 @@ import Button_One from './button/Button_One';
 import bgsvg from '../assests/bg_svg.svg'
 import bg from '../assests/bg.png'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register_form = () => {
+    const navigate = useNavigate()
 
     const [active, setactive] = useState(false)
     const [formData, setformData] = useState(null)
@@ -23,7 +25,7 @@ const Register_form = () => {
     const registerUser = async (e) => {
         e.preventDefault()
         setloading(true)
-        axios.post('http://127.0.0.1:8000/api/user/', formData)
+        axios.post('https://api-317e.vercel.app/api/user/', formData)
             .then((res) => {
                 console.log(res.data)
                 if (res?.data?.status == 'success') {
@@ -58,11 +60,13 @@ const Register_form = () => {
 
             console.log(useremail, email);
 
-            axios.post('http://127.0.0.1:8000/api/payment/', { 'email': email })
+            axios.post('https://api-317e-yash-189.vercel.app/api/payment/', { 'email': email })
                 .then((res) => {
                     console.log(res.data)
                     if (res?.data?.status == 'success') {
                       localStorage.clear()
+                      navigate('/success')
+
                     } else {
                         window.alert('error')
                         setloading(false)
@@ -114,21 +118,21 @@ const Register_form = () => {
                                     1. Choose your batch
                                 </p>
                                 <div className='flex justify-between text-base'>
-                                    <div class="flex items-center ">
-                                        <input onChange={onChange} value='6-7AM' required id="batch" type="radio" name="batch" class="w-4 h-4 accent-blue-500 bg-gray-100 border-gray-300 " />
-                                        <label for="batch" class="py-3 ml-2 w-full text-sm  text-gray-900 dark:text-gray-300">6-7AM </label>
+                                    <div className="flex items-center ">
+                                        <input onChange={onChange} value='6-7AM' required id="batch" type="radio" name="batch" className="w-4 h-4 accent-blue-500 bg-gray-100 border-gray-300 " />
+                                        <label for="batch" className="py-3 ml-2 w-full text-sm  text-gray-900 dark:text-gray-300">6-7AM </label>
                                     </div>
-                                    <div class="flex items-center ">
-                                        <input onChange={onChange} id="batch" type="radio" value="7-8AM" name="batch" class="w-4 h-4 accent-blue-500 bg-gray-100 border-gray-300 " />
-                                        <label for="batch" class="py-3 ml-2 w-full text-sm  text-gray-900 ">7-8AM </label>
+                                    <div className="flex items-center ">
+                                        <input onChange={onChange} id="batch" type="radio" value="7-8AM" name="batch" className="w-4 h-4 accent-blue-500 bg-gray-100 border-gray-300 " />
+                                        <label for="batch" className="py-3 ml-2 w-full text-sm  text-gray-900 ">7-8AM </label>
                                     </div>
-                                    <div class="flex items-center ">
-                                        <input onChange={onChange} id="batch" type="radio" value="8-9AM" name="batch" class="w-4 h-4  bg-gray-100 border-gray-300 accent-blue-500" />
-                                        <label for="batch" class="py-3 ml-2 w-full text-sm  text-gray-900 dark:text-gray-300">8-9AM </label>
+                                    <div className="flex items-center ">
+                                        <input onChange={onChange} id="batch" type="radio" value="8-9AM" name="batch" className="w-4 h-4  bg-gray-100 border-gray-300 accent-blue-500" />
+                                        <label for="batch" className="py-3 ml-2 w-full text-sm  text-gray-900 dark:text-gray-300">8-9AM </label>
                                     </div>
-                                    <div class="flex items-center ">
-                                        <input onChange={onChange} id="batch" type="radio" value="5-6PM" name="batch" class="w-4 h-4 accent-blue-500  bg-gray-100 border-gray-300 " />
-                                        <label for="batch" class="py-3 ml-2 w-full text-sm  text-gray-900 dark:text-gray-300">5-6PM </label>
+                                    <div className="flex items-center ">
+                                        <input onChange={onChange} id="batch" type="radio" value="5-6PM" name="batch" className="w-4 h-4 accent-blue-500  bg-gray-100 border-gray-300 " />
+                                        <label for="batch" className="py-3 ml-2 w-full text-sm  text-gray-900 dark:text-gray-300">5-6PM </label>
                                     </div>
 
                                 </div>
@@ -139,23 +143,23 @@ const Register_form = () => {
                                 <p className='mb-5 text-lg  font-light'>
                                     2. Enter your personal details
                                 </p>
-                                <div class="relative z-0 mb-6 w-full group text-base">
-                                    <input onChange={onChange} type="text" name="name" id="name" class="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
-                                    <label for="name" class="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Full name</label>
+                                <div className="relative z-0 mb-6 w-full group text-base">
+                                    <input onChange={onChange} type="text" name="name" id="name" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
+                                    <label for="name" className="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Full name</label>
                                 </div>
 
-                                <div class="relative z-0 mb-6 w-full group text-base">
-                                    <input onChange={onChange} type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
-                                    <label for="email" class="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                                <div className="relative z-0 mb-6 w-full group text-base">
+                                    <input onChange={onChange} type="email" name="email" id="email" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
+                                    <label for="email" className="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
                                 </div>
 
-                                <div class="relative z-0 mb-6 w-full group text-base">
-                                    <input onChange={onChange} type="tel" name="contact_no" maxLength={10} id="contact_no" class="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
-                                    <label for="contact_no" class="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number</label>
+                                <div className="relative z-0 mb-6 w-full group text-base">
+                                    <input onChange={onChange} type="tel" name="contact_no" maxLength={10} id="contact_no" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
+                                    <label for="contact_no" className="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number</label>
                                 </div>
 
-                                <div class=" mb-6 w-full  text-base">
-                                    <select onChange={onChange} name="age" id="age" class="block py-2.5 px-0 w-full  text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required >
+                                <div className=" mb-6 w-full  text-base">
+                                    <select onChange={onChange} name="age" id="age" className="block py-2.5 px-0 w-full  text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required >
                                         <option selected className='px-8'>{'Age'}</option>
                                         {ageArray.map((elem) => {
                                             return <option value={elem} className='px-8'>{elem}</option>
@@ -180,27 +184,27 @@ const Register_form = () => {
                                 </p>
 
 
-                                <div class="relative z-0 mb-6 w-full group text-base">
-                                    <input onChange={(e) => setemail(e.target.value)} type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
-                                    <label for="email" class="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm email address</label>
+                                <div className="relative z-0 mb-6 w-full group text-base">
+                                    <input onChange={(e) => setemail(e.target.value)} type="email" name="email" id="email" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
+                                    <label for="email" className="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm email address</label>
                                     {alert &&
                                         <p className='text-red-500 text-xs'>Check your email address</p>}
                                 </div>
 
-                                <div class="relative z-0 mb-6 w-full group text-base">
-                                    <input type="tel" input mode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" name="card_no" id="card_no" class="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
-                                    <label for="card_no" class="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Card number</label>
+                                <div className="relative z-0 mb-6 w-full group text-base">
+                                    <input type="tel" input mode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" name="card_no" id="card_no" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
+                                    <label for="card_no" className="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Card number</label>
                                 </div>
 
                                 <div className='flex'>
 
-                                    <div class="relative z-0 mb-6 mr-6 w-1/3 group text-base">
-                                        <input type="tel" mode="numeric" maxlength="5" name="mm/yy" id="mm/yy" class="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
-                                        <label for="mm/yy" class="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">MM/YY</label>
+                                    <div className="relative z-0 mb-6 mr-6 w-1/3 group text-base">
+                                        <input type="tel" mode="numeric" maxlength="5" name="mm/yy" id="mm/yy" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
+                                        <label for="mm/yy" className="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">MM/YY</label>
                                     </div>
-                                    <div class="relative z-0 mb-6 w-1/3 group text-base">
-                                        <input type="tel" mode="numeric" maxlength="3" name="cvv" id="cvv" class="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
-                                        <label for="cvv" class="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">CVV</label>
+                                    <div className="relative z-0 mb-6 w-1/3 group text-base">
+                                        <input type="tel" mode="numeric" maxlength="3" name="cvv" id="cvv" className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none  focus:outline-none focus:ring-0 focus:border-blue-500 peer" placeholder=" " required />
+                                        <label for="cvv" className="peer-focus:font-medium absolute  text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-500  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">CVV</label>
                                     </div>
                                 </div>
 
